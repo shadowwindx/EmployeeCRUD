@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wind.crud.mapper.UserMapper">
+
+    <!--查詢註冊資料-->
+    <select id="queryAllUser" resultType="User">
+        SELECT *
+        FROM inceptime.user;
+    </select>
+
+    <!--儲存註冊資料-->
+    <insert id="addUser" parameterType="User">
+        INSERT INTO inceptime.user (accountName, userName, password)
+        VALUES (#{accountName}, #{userName}, #{password});
+    </insert>
+
+    <!--驗證帳號密碼-->
+    <select id="authenticateUser" parameterType="User">
+        SELECT *
+        FROM inceptime.user
+        WHERE accountName = #{accountName}
+          AND password = #{password};
+    </select>
+    <!--根據用戶名稱查詢-->
+    <select id="queryByName" resultType="User">
+        SELECT *
+        FROM inceptime.user
+        WHERE accountName = #{accountName};
+    </select>
+
+</mapper>

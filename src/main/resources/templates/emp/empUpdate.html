@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>更新員工資料</title>
+
+    <!--Bootstrap Css-->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+          crossorigin="anonymous"/>
+</head>
+<body>
+<!--頂端導航欄navBarTop-->
+<div th:replace="~{commons/navBar::navBar}"></div>
+<!--內容-->
+<div class="container">
+    <div class="row">
+        <div class="col-12 my-5">
+            <form th:action="@{/updateEmp}"
+                  method="post"
+                  id="empForm"
+                  name="updateEmpForm">
+                <div class="form-row d-flex justify-content-center">
+                    <div class="form-group col-lg-4 col-md-6">
+                        <input th:value="${empById.empId}"
+                               type="hidden"
+                               class="form-control"
+                               name="empId"/>
+                    </div>
+                </div>
+                <div class="form-row d-flex justify-content-center">
+                    <div class="form-group col-lg-4 col-md-6">
+                        <label>姓名</label>
+                        <input th:value="${empById.empName}"
+                               type="text"
+                               class="form-control"
+                               name="empName"
+                               id="nameId"
+                               required
+                               pattern="^[\u4E00-\u9FA5A-Za-z]{2,20}$"/>
+                        <div class="text-right" id="nameInfo"></div>
+                    </div>
+                    <div class="form-group col-lg-4 col-md-6">
+                        <label>Email</label>
+                        <input th:value="${empById.empEmail}"
+                               type="email"
+                               class="form-control"
+                               name="empEmail"
+                               required/>
+                    </div>
+                </div>
+                <div class="form-row d-flex justify-content-center">
+                    <div class="form-group col-lg-8 col-md-12">
+                        <label>住址</label>
+                        <input th:value="${empById.empAddress}"
+                               type="text"
+                               class="form-control"
+                               name="empAddress"
+                               required
+                               pattern="(?\D+?[縣市])(?\D+?(市區|鎮區|鎮市|[鄉鎮市區]))?(?\D+?[村里])?(?\d+[鄰])?(?\D+?(村路|[路街道段]))?(? \D?段)?(?\d+巷)?(?\d+弄)?(?\d+號?)?(?-\d+?(號))?(?\d+樓)?(?.+)?"/>
+                    </div>
+                </div>
+                <div class="form-row d-flex justify-content-center">
+                    <div class="form-group col-lg-4 col-md-6">
+                        <label>生日</label>
+                        <input th:value="${#dates.format(empById.empBirthday,'yyyy-MM-dd')}"
+                               type="date"
+                               class="form-control"
+                               name="empBirthday"
+                               placeholder="格式為yyyy-MM-dd"
+                               pattern="/^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/"
+                               required/>
+                    </div>
+                    <div class="form-group col-lg-4 col-md-6">
+                        <label>薪水</label>
+                        <input th:value="${empById.empSalary}"
+                               type="text"
+                               class="form-control"
+                               name="empSalary"
+                               required
+                               pattern="^(0|[1-9][0-9]*)$"/>
+                    </div>
+                </div>
+                <div class="form-row col-lg-8 d-flex justify-content-center">
+                    <div class="form-group col-md-6">
+                        <label>性別</label><br/>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="empGender"
+                                   value="男"
+                                   th:checked="${empById.getEmpGender().equals('男')}"/>
+                            <label class="form-check-label">男</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="empGender"
+                                   value="女"
+                                   th:checked="${empById.getEmpGender().equals('女')}"/>
+                            <label class="form-check-label">女</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row d-flex justify-content-center">
+                    <div class="col-lg-8 text-right">
+                        <input type="submit" class="btn btn-primary " value="修改"></input>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Bootstrap Js-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/8e822d04fb.js"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS --------------------------------------------------------------------->
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous"/>
+
+    <!-- Import CSS End--------------------------------------------------------------------->
+
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+
+    <!-- Input CSS End---------------------------------------------------------------------->
+
+    <title>首頁</title>
+</head>
+
+<body>
+<!-- Main Start------------------------------------------------------------------------->
+
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center align-items-center my-5">
+        <div class="col-lg-4 mx-5 my-5 blurBg">
+            <form th:action="@{/loginSuccess}" class="m-5 form-text" method="post">
+                <div class="d-flex justify-content-center mb-3">
+                    <h1><i class="fas fa-users mr-2"></i>員工管理系統登入</i></h1>
+                </div>
+                <div class="d-flex justify-content-center msgR" style="color: red" th:text="${userError}"
+                     th:if="${not #strings.isEmpty(userError)}"></div>
+                <div class="d-flex justify-content-center msgB" style="color: deepskyblue" th:text="${registerSuccess}"
+                     th:if="${not #strings.isEmpty(registerSuccess)}"></div>
+                <div class="form-group">
+                    <label><i class="fas fa-user mr-2"></i>帳號</label>
+                    <input type="text"
+                           class="form-control"
+                           name="accountName"
+                           onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"
+                           required/>
+                    <small class="form-text text-muted">只能輸入中文和數字和下底線</small>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-key mr-2"></i>密碼</label>
+                    <input type="password"
+                           class="form-control"
+                           name="password"
+                           onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"
+                           required/>
+                    <small class="form-text text-muted">只能輸入中文和數字和下底線</small>
+                </div>
+                <div class="d-flex justify-content-end mt-2">
+                    <a type="submit" class="btn btn-outline-primary text-right " th:href="@{/toRegister}">註冊帳號</a>
+                    <button type="submit" class="button btn btn-primary text-right ml-2">登入</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Main End--------------------------------------------------------------------------->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/8e822d04fb.js"
+        crossorigin="anonymous"></script>
+</body>
+</html>

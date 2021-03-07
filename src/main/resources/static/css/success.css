@@ -1,0 +1,30 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url(../img/success.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+
+.blurBg{
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    height: 390px;
+    width: 500px;
+}
+ 
+.form-text{
+    color: white;
+}
+.outbox{
+    height: 100vh;
+}
+.success-icon{
+    font-size: 120px;
+    color: rgb(103, 235, 103);
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wind.crud.mapper.EmployeeMapper">
+
+    <!--查詢全部的員工-->
+    <select id="queryAllEmployee" resultType="Employee">
+        SELECT empId, empName, empEmail, empAddress, empBirthday, empSalary, empGender
+        FROM inceptime.emp;
+    </select>
+
+    <!--查詢員工透過Id-->
+    <select id="queryEmployeeById" parameterType="int" resultType="Employee">
+        SELECT *
+        FROM inceptime.emp
+        WHERE empId = #{empId}
+    </select>
+
+    <!--查詢員工透過姓名-->
+    <select id="queryEmployeeByName" resultType="Employee">
+        SELECT *
+        FROM inceptime.emp
+        WHERE empName = #{empName}
+    </select>
+
+    <!--增加員工-->
+    <insert id="addEmployee" parameterType="Employee">
+        INSERT INTO inceptime.emp (empName, empEmail, empAddress, empBirthday, empSalary, empGender)
+        VALUES (#{empName}, #{empEmail}, #{empAddress}, #{empBirthday}, #{empSalary}, #{empGender});
+    </insert>
+
+    <!--更新員工資料-->
+    <insert id="updateEmployee" parameterType="Employee">
+        UPDATE inceptime.emp
+        SET empName    =#{empName},
+            empEmail=#{empEmail},
+            empAddress=#{empAddress},
+            empBirthday=#{empBirthday},
+            empSalary= #{empSalary},
+            empGender=#{empGender}
+        WHERE empId = #{empId};
+    </insert>
+
+    <!--刪除員工資料-->
+    <delete id="deleteEmployee" parameterType="Employee">
+        DELETE
+        FROM inceptime.emp
+        WHERE empId = #{empId};
+    </delete>
+
+</mapper>
